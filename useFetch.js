@@ -7,6 +7,13 @@ const useFetch = url =>  {
     const [updateLoading,setUpdateLoading] = useState(false)
     const [error,setError] = useState(null)
 
+    const useFetch = url =>  {
+
+    const [movies,setMovies] = useState([])
+    const [isLoading,setIsLoading] = useState(false)
+    const [updateLoading,setUpdateLoading] = useState(false)
+    const [error,setError] = useState(null)
+
     useEffect(()=>{
         setIsLoading(true)
         const fetchData = async () => {
@@ -25,9 +32,12 @@ const useFetch = url =>  {
                     release_date : movie.release_date
                     }
                 }) 
-                setMovies(movieData) 
+                setMovies(movieData)
+                setError(false)
+                setIsLoading(false)
             } catch (error) {
                 setError(error.message)
+                setIsLoading(false)
             }
 
         }
